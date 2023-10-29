@@ -5,23 +5,24 @@ function Form(){
     const handleSubmit = (e) => {
         e.preventDefault()
         const name = e.target.name.value
-        fetch(`http://localhost:3000/api/v1/games`, {
-        method: "POST",
-        headers: {
+    
+        fetch(`${import.meta.env.VITE_API_URL}/api/v1/games`, {
+            method: "POST",
+            headers: {
             "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name })
-    })
-        .then(response => response.json())
-        .then(_id => setGames(x => [...x, { _id, name }]))
-        .then(() => e.target.name.value = "")
-    }
-    const [games, setGames] = useState([])
-    useEffect(() => {
-        fetch(`http://localhost:3000/api/v1/games`)
-        .then((response) => response.json())
-        .then((data) => setGames(data))
-    }, [])
+            },
+            body: JSON.stringify({ name })
+        })
+            .then(response => response.json())
+            .then(_id => setGames(x => [...x, { _id, name }]))
+            .then(() => e.target.name.value = "")
+        }
+        const [games, setGames] = useState([])
+        useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/api/v1/games`)
+            .then((response) => response.json())
+            .then((data) => setGames(data))
+        }, [])
 
     return (
         <>

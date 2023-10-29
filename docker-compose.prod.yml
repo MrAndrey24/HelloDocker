@@ -2,11 +2,13 @@ version: "1.0"
 
 services:
   app:
-    build: 
+    build:
       context: ./frontend
-      dockerfile: dockerfile.dev
+      dockerfile: dockerfile.prod
+      args:
+        API_URL: http://170.64.171.185:3000
     ports:
-      - 80:5173
+      - 80:80
     volumes:
       - ./frontend/src:/app/src
   api:
